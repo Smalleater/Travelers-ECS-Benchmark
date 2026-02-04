@@ -8,7 +8,7 @@
 #include "TRA/ecs/ISystem.hpp"
 
 constexpr size_t LOOP_COUNT = 10;
-constexpr uint32_t ENTITY_COUNT = 100000;
+constexpr uint32_t ENTITY_COUNT = 1000;
 constexpr size_t COMPONENTS_PER_ENTITY = 5;
 constexpr size_t TAG_PER_ENTITY = 3;
 constexpr size_t SYSTEM_COUNT = 3;

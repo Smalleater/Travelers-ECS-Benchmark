@@ -9,6 +9,7 @@
 #include "TRA/ecs/entityData.hpp"
 #include "TRA/ecs/entitySignature.hpp"
 #include "TRA/ecs/signatureKey.hpp"
+#include "TRA/ecs/componentLibrary.hpp"
 
 namespace tra::ecs
 {

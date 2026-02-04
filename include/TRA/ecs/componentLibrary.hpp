@@ -6,6 +6,7 @@
 #include <vector>
 #include <unordered_map>
 #include <typeindex>
+#include <stdexcept>
 
 #include "TRA/ecs/entitySignature.hpp"
 #include "TRA/ecs/componentInfo.hpp"

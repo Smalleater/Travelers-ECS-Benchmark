@@ -4,6 +4,9 @@
 #include "TRA/export.hpp"
 
 #include <array>
+#include <cstddef>
+#include <cstdint>
+#include <functional>
 
 namespace tra::ecs
 {

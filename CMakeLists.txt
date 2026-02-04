@@ -15,20 +15,23 @@ target_include_directories(Benchmark
 		${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-target_link_libraries(Benchmark PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/tra_ecs.lib)
-
 target_compile_features(Benchmark PRIVATE cxx_std_17)
 
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    file(GLOB DLL_FILES "${CMAKE_CURRENT_SOURCE_DIR}/dll/debug/*.dll")
-elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+if(WIN32)
+    add_library(tra_ecs SHARED IMPORTED)
+    set_target_properties(tra_ecs PROPERTIES
+        IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/dll/release/tra_ecs.dll
+        IMPORTED_IMPLIB  ${CMAKE_CURRENT_SOURCE_DIR}/lib/tra_ecs.lib
+    )
+
     file(GLOB DLL_FILES "${CMAKE_CURRENT_SOURCE_DIR}/dll/release/*.dll")
+else()
+    add_library(tra_ecs SHARED IMPORTED)
+    set_target_properties(tra_ecs PROPERTIES
+        IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/dll/release/libtra_ecs.so
+    )
+
+    file(GLOB DLL_FILES "${CMAKE_CURRENT_SOURCE_DIR}/dll/release/*.so")
 endif()
 
-if(DLL_FILES)
-    add_custom_command(TARGET Benchmark POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        ${DLL_FILES} $<TARGET_FILE_DIR:Benchmark>
-        COMMENT "Copie des DLLs vers le répertoire de sortie"
-    )
-endif()
+target_link_libraries(Benchmark PRIVATE tra_ecs)
