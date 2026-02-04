@@ -216,7 +216,7 @@ int main()
 
 		end = mainClock.now();
 
-		systemDuration += std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+		systemDuration += std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
 
 		//////////////////////////////////////////////////////////////
 
@@ -283,7 +283,7 @@ int main()
 	std::cout << std::endl;
 	std::cout << "Average time to set a component to an entity: " << std::to_string(setComponentDuration / LOOP_COUNT / COMPONENTS_PER_ENTITY / ENTITY_COUNT) << " nanoseconds" << std::endl;
 	std::cout << std::endl;
-	std::cout << "Average time to update a system to an entity: " << std::to_string(systemDuration / LOOP_COUNT / UPDATE_SYSTEM_COUNT / SYSTEM_COUNT) << " microseconds" << std::endl;
+	std::cout << "Average time to update a system to an entity: " << std::to_string(systemDuration / LOOP_COUNT / UPDATE_SYSTEM_COUNT / SYSTEM_COUNT) << " nanoseconds" << std::endl;
 
 	return 0;
 }
